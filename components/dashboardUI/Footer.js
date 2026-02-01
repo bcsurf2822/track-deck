@@ -15,7 +15,7 @@ export default function Footer() {
           </div>
 
           <div className="text-center text-sm text-slate-300">
-            <p>&copy; {new Date().getFullYear()} Trello 2.5</p>
+            <p>&copy; {new Date().getFullYear()} Track Deck</p>
           </div>
 
           <div className="flex gap-5 items-center">
@@ -32,7 +32,7 @@ export default function Footer() {
             </a>
             
             <a
-              href="https://github.com/bcsurf2822/trello-2.5"
+              href="https://github.com/bcsurf2822/track-deck"
               target="_blank"
               rel="noopener noreferrer"
               className="transition-transform hover:scale-110"

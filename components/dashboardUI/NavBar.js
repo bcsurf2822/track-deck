@@ -44,7 +44,7 @@ export default async function NavBar() {
 
           <Link href={"/dashboard"} className="flex items-center gap-2 group">
             <span className="text-2xl font-extrabold bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent group-hover:from-blue-700 group-hover:to-blue-900 transition duration-300">
-              Trello 2.5
+              Track Deck
             </span>
             <div className="p-1.5 bg-blue-600 rounded-lg shadow-md group-hover:bg-blue-700 transition duration-300">
               <svg

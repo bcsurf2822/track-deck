@@ -3,7 +3,7 @@ import Providers from "./providers";
 import { Analytics } from "@vercel/analytics/next";
 
 export const metadata = {
-  title: "Trello 2.5",
+  title: "Track Deck",
   description: "A kanban board clone with guest and OAuth2.0",
 };
 

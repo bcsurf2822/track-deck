@@ -1,14 +1,14 @@
-# Trello 2.5
-Trello 2.5 is a clone of the kanban-style site Trello® used for project and task management. Create boards, lists, and cards to organize daily tasks or projects.
+# Track Deck
+Track Deck is a clone of the kanban-style site Trello® used for project and task management. Create boards, lists, and cards to organize daily tasks or projects.
 
 
 ## 🏆 Goals
 
-My goal in this project was to get aquainted with the full-stack capabilities of Next.js and to learn how to use Tanstack Query. I wanted to retain the features of Trello 2 while improving the UI/UX, drag-and-drop functionality, and adding new features such as labels and descriptions in the cards.
+My goal in this project was to get aquainted with the full-stack capabilities of Next.js and to learn how to use Tanstack Query. I wanted to retain the features of the original Trello clone while improving the UI/UX, drag-and-drop functionality, and adding new features such as labels and descriptions in the cards.
 
 ## 🎥 Live Demo
 
-[Trello 2.5](https://trello-2-5.vercel.app/)
+[Track Deck](https://trello-2-5.vercel.app/)
 
 ## 🔑 Features
 
@@ -38,13 +38,13 @@ My goal in this project was to get aquainted with the full-stack capabilities of
 Clone the project
 
 ```bash
-  git clone https://github.com/bcsurf2822/trello-2.5.git
+  git clone https://github.com/bcsurf2822/track-deck.git
 ```
 
 Go to the project directory
 
 ```bash
-  cd trello-2.5
+  cd track-deck
 ```
 
 Install dependencies
@@ -67,7 +67,7 @@ Start the server
 
 ## Inspiration
 
-My idea for this project came from Trello 2, a team based project built during my time at Parsity. Trello 2 was developed using Redux, React with Create React App, Node, Express, and had a JWT-based authentication strategy. Feel Free to view that project repo [here](https://github.com/bcsurf2822/ParsityTrello).
+My idea for this project came from an earlier Trello clone, a team based project built during my time at Parsity. That project was developed using Redux, React with Create React App, Node, Express, and had a JWT-based authentication strategy. Feel Free to view that project repo [here](https://github.com/bcsurf2822/ParsityTrello).
 
 ## 🔗 Links
 

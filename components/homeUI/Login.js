@@ -23,7 +23,7 @@ export default function Login() {
             </svg>
           </div>
           <h1 className="text-4xl font-extrabold bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">
-            Trello 2.5
+            Track Deck
           </h1>
         </div>
         <p className="text-slate-600 max-w-md">

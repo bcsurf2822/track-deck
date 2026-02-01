@@ -8,7 +8,7 @@ export async function POST() {
 
     const uniqueId = `${Date.now()}-${Math.floor(Math.random() * 10000)}`;
     const guestName = `guest${uniqueId.slice(-4)}`;
-    const guestEmail = `${guestName}@trello2.5.com`;
+    const guestEmail = `${guestName}@trackdeck.com`;
 
     console.log(`Creating guest user: ${guestName} with email: ${guestEmail}`);
 
