@@ -1,29 +1,13 @@
-import axios from "axios";
-
-const localUrl = process.env.API_BASE_URL;
+import { connectMongo } from "@/lib/mongoose";
+import User from "@/models/User";
 
 export const fetchGuestInfo = async (guestId) => {
   try {
-
-    const requestUrl = `${localUrl}/api/user`;
-
-    const response = await axios.get(requestUrl, {
-      params: { guestId },
-      withCredentials: true,
-    });
-
-
-
-
-    return response.data.user;
+    await connectMongo();
+    const user = await User.findOne({ _id: guestId, isGuest: true }).lean();
+    return user || null;
   } catch (error) {
-    console.error("❌ Error in fetchGuestInfo:");
-    if (error.response) {
-      console.error("🌐 Response Status:", error.response.status);
-      console.error("📦 Response Data:", error.response.data);
-    } else {
-      console.error("⚠️ Error Message:", error.message);
-    }
+    console.error("[fetchGuestInfo] Failed to fetch guest user:", error.message);
     return null;
   }
 };

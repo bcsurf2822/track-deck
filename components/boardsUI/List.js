@@ -2,7 +2,7 @@
 import AddCardButton from "./AddCardButton";
 import DragCard from "./DragCard";
 import { useDeleteList } from "@/hooks/useDeleteList";
-import { AnimatePresence } from "framer-motion";
+import { AnimatePresence } from "motion/react";
 import { FaGripLines, FaTrash } from "react-icons/fa";
 
 export default function List({ list, boardId, dragControls }) {

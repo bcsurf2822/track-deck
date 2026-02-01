@@ -9,28 +9,11 @@ export const useCreateCard = (boardId) => {
   return useMutation({
     mutationFn: async (formData) => {
       const headers = guestId ? { "Guest-ID": guestId } : {};
-      try {
-        console.log("Creating card with data:", formData, "Headers:", headers);
-        const response = await axios.post("/api/card", formData, { headers });
-        console.log("Card created successfully:", response.data);
-        return response.data;
-      } catch (error) {
-        console.error(
-          "Error in mutationFn:",
-          error.response?.data || error.message || error
-        );
-        throw error; 
-      }
+      const response = await axios.post("/api/card", formData, { headers });
+      return response.data;
     },
     onSuccess: () => {
-      console.log("Mutation successful. Invalidating board query...");
-      queryClient.invalidateQueries(["board", boardId]);
-    },
-    onError: (error) => {
-      console.error(
-        "Error adding card in onError:",
-        error.response?.data || error.message || error
-      );
+      queryClient.invalidateQueries({ queryKey: ["board", boardId] });
     },
   });
 };

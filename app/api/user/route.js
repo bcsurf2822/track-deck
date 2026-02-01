@@ -19,7 +19,6 @@ export async function GET(request) {
     const user = await User.findById(guestId);
 
     if (!user || !user.isGuest) {
-      console.log("No valid guest user found for the given guest ID.");
       return NextResponse.json(
         { error: "Guest user not found" },
         { status: 404 }

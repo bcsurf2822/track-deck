@@ -12,7 +12,6 @@ export default async function DashboardLayout({ children }) {
   const guestId = cookieStore.get("guestId")?.value;
 
   if (!session && !guestId) {
-    console.log("Redirecting: No session or guest ID");
     redirect("/");
   }
   return (

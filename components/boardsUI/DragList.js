@@ -1,5 +1,5 @@
 "use client";
-import { Reorder, useDragControls } from "framer-motion";
+import { Reorder, useDragControls } from "motion/react";
 import List from "@/components/boardsUI/List";
 
 export default function DragList({ list, boardId }) {

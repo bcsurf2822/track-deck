@@ -9,29 +9,14 @@ export const useDeleteList = (boardId) => {
   return useMutation({
     mutationFn: async ({ listId }) => {
       const headers = guestId ? { "Guest-ID": guestId } : {};
-
-      try {
-        const response = await axios.delete("/api/list", {
-          headers,
-          data: { boardId, listId },
-        });
-        return response.data;
-      } catch (error) {
-        console.error(
-          "Error in mutationFn:",
-          error.response?.data || error.message || error
-        );
-        throw error;
-      }
+      const response = await axios.delete("/api/list", {
+        headers,
+        data: { boardId, listId },
+      });
+      return response.data;
     },
     onSuccess: () => {
-      queryClient.invalidateQueries(["board", boardId]);
-    },
-    onError: (error) => {
-      console.error(
-        "Error deleting list in onError:",
-        error.response?.data || error.message || error
-      );
+      queryClient.invalidateQueries({ queryKey: ["board", boardId] });
     },
   });
 };

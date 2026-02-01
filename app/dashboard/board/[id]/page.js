@@ -3,7 +3,7 @@ import AddList from "@/components/boardsUI/AddList";
 import DragList from "@/components/boardsUI/DragList";
 import { useBoard } from "@/hooks/useBoard";
 import { useSaveOrder } from "@/hooks/useSaveListOrder";
-import { Reorder } from "framer-motion";
+import { Reorder } from "motion/react";
 import { use, useEffect, useState } from "react";
 import { FaArrowLeft } from "react-icons/fa";
 import Link from "next/link";
@@ -11,7 +11,7 @@ import Link from "next/link";
 export default function BoardPage({ params }) {
   const unwrappedParams = use(params);
   const { id } = unwrappedParams;
-  const { data: board, isLoading, error } = useBoard(id);
+  const { data: board, isPending, error } = useBoard(id);
   const [lists, setLists] = useState(board?.lists || []);
   const saveOrder = useSaveOrder(id);
 
@@ -26,7 +26,7 @@ export default function BoardPage({ params }) {
     saveOrder.mutate(newOrder);
   };
 
-  if (isLoading) {
+  if (isPending) {
     return (
       <div className="flex justify-center items-center h-64">
         <span className="loading loading-dots loading-lg"></span>

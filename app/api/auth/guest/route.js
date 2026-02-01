@@ -10,15 +10,11 @@ export async function POST() {
     const guestName = `guest${uniqueId.slice(-4)}`;
     const guestEmail = `${guestName}@trackdeck.com`;
 
-    console.log(`Creating guest user: ${guestName} with email: ${guestEmail}`);
-
     const guestUser = await User.create({
       name: guestName,
       isGuest: true,
       email: guestEmail,
     });
-
-    console.log(`Guest user created with ID: ${guestUser._id}`);
 
     const response = NextResponse.json({
       message: "Guest user created successfully",
@@ -30,7 +26,6 @@ export async function POST() {
     });
 
     const guestIdValue = guestUser._id.toString();
-    console.log(`Setting cookie guestId=${guestIdValue}`);
 
     response.cookies.set({
       name: "guestId",
@@ -46,8 +41,7 @@ export async function POST() {
 
     return response;
   } catch (error) {
-    console.error("Error creating guest user:", error.message);
-    console.error("Stack:", error.stack);
+    console.error("[guest-route-POST]", error.message);
 
     return NextResponse.json(
       { error: "Unable to create guest user", details: error.message },
@@ -98,11 +92,7 @@ export async function DELETE(req) {
     response.headers.set("Cache-Control", "no-store");
     return response;
   } catch (error) {
-    console.error("Error deleting guest user:", {
-      message: error.message,
-      stack: error.stack,
-      code: error.code,
-    });
+    console.error("[guest-route-DELETE]", error.message);
 
     return NextResponse.json(
       {

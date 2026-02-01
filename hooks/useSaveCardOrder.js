@@ -14,47 +14,15 @@ export function useSaveCardOrder(boardId) {
       newIndex,
     }) => {
       const headers = guestId ? { "Guest-ID": guestId } : {};
-
-      try {
-        console.log("Saving card order with data:", {
-          boardId,
-          cardId,
-          sourceListId,
-          destinationListId,
-          newIndex,
-        });
-
-        const response = await axios.put(
-          "/api/card",
-          {
-            boardId,
-            cardId,
-            sourceListId,
-            destinationListId,
-            newIndex,
-          },
-          { headers }
-        );
-
-        console.log("Card order saved successfully:", response.data);
-        return response.data;
-      } catch (error) {
-        console.error(
-          "Error saving card order:",
-          error.response?.data || error.message || error
-        );
-        throw error;
-      }
+      const response = await axios.put(
+        "/api/card",
+        { boardId, cardId, sourceListId, destinationListId, newIndex },
+        { headers }
+      );
+      return response.data;
     },
     onSuccess: () => {
-      console.log("Invalidating board query after saving card order...");
-      queryClient.invalidateQueries(["board", boardId]);
-    },
-    onError: (error) => {
-      console.error(
-        "Error saving card order in onError:",
-        error.response?.data || error.message || error
-      );
+      queryClient.invalidateQueries({ queryKey: ["board", boardId] });
     },
   });
 }

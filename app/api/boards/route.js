@@ -24,7 +24,6 @@ export async function GET(request) {
     }
 
     if (!user) {
-      console.log("User not found");
       return NextResponse.json({ error: "User not found" }, { status: 404 });
     }
 
@@ -74,9 +73,6 @@ export async function POST(req) {
 
     user.boards.push(board._id);
     await user.save();
-
-    console.log("Board Created:", board);
-    console.log("User Updated with Board:", user);
 
     return NextResponse.json(board, { status: 201 });
   } catch (error) {
@@ -130,9 +126,6 @@ export async function DELETE(req) {
       user.boards = user.boards.filter((id) => id.toString() !== boardId);
       await user.save();
     }
-
-    console.log("Board Deleted:", board);
-    console.log("User Updated After Deletion:", user);
 
     return NextResponse.json({ message: "Board deleted successfully" });
   } catch (error) {

@@ -9,25 +9,11 @@ export const useCreateList = (boardId) => {
   return useMutation({
     mutationFn: async (formData) => {
       const headers = guestId ? { "Guest-ID": guestId } : {};
-      try {
-        const response = await axios.post("/api/list", formData, { headers });
-        return response.data;
-      } catch (error) {
-        console.error(
-          "Error in mutationFn:",
-          error.response?.data || error.message || error
-        );
-        throw error;
-      }
+      const response = await axios.post("/api/list", formData, { headers });
+      return response.data;
     },
     onSuccess: () => {
-      queryClient.invalidateQueries(["board", boardId]);
-    },
-    onError: (error) => {
-      console.error(
-        "Error adding list in onError:",
-        error.response?.data || error.message || error
-      );
+      queryClient.invalidateQueries({ queryKey: ["board", boardId] });
     },
   });
 };

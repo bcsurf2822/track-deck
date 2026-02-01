@@ -74,9 +74,6 @@ export async function POST(req) {
 
     await board.save();
 
-    console.log("Card Added:", newCard);
-    console.log("Updated Board:", board);
-
     return NextResponse.json({ message: "Card added successfully", board });
   } catch (error) {
     console.error("Error adding card:", error.message);
@@ -156,9 +153,6 @@ export async function DELETE(req) {
     const removedCard = list.cards.splice(cardIndex, 1);
 
     await board.save();
-
-    console.log("Card Deleted:", removedCard);
-    console.log("Updated Board:", board);
 
     return NextResponse.json({ message: "Card deleted successfully", board });
   } catch (error) {

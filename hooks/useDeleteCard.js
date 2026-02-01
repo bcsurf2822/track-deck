@@ -9,32 +9,14 @@ export const useDeleteCard = (boardId, listId) => {
   return useMutation({
     mutationFn: async (cardId) => {
       const headers = guestId ? { "Guest-ID": guestId } : {};
-
-      try {
-        console.log("Deleting card with data:", { boardId, listId, cardId });
-        const response = await axios.delete("/api/card", {
-          headers,
-          data: { boardId, listId, cardId },
-        });
-        console.log("Card deleted successfully:", response.data);
-        return response.data;
-      } catch (error) {
-        console.error(
-          "Error in mutationFn:",
-          error.response?.data || error.message || error
-        );
-        throw error;
-      }
+      const response = await axios.delete("/api/card", {
+        headers,
+        data: { boardId, listId, cardId },
+      });
+      return response.data;
     },
     onSuccess: () => {
-      console.log("Mutation onSuccess. Invalidating board query...");
-      queryClient.invalidateQueries(["board", boardId]);
-    },
-    onError: (error) => {
-      console.error(
-        "Error deleting card in onError:",
-        error.response?.data || error.message || error
-      );
+      queryClient.invalidateQueries({ queryKey: ["board", boardId] });
     },
   });
 };

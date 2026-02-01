@@ -1,5 +1,5 @@
 // components/boardsUI/DragCard.js
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { useDeleteCard } from "@/hooks/useDeleteCard";
 import { useSaveCardOrder } from "@/hooks/useSaveCardOrder";
 import { FaTrash } from "react-icons/fa";

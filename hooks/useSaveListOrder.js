@@ -9,35 +9,15 @@ export const useSaveOrder = (boardId) => {
   return useMutation({
     mutationFn: async (newOrder) => {
       const headers = guestId ? { "Guest-ID": guestId } : {};
-      try {
-        console.log("Saving list order with data:", { boardId, newOrder });
-        const response = await axios.put(
-          `/api/list`,
-          {
-            boardId,
-            lists: newOrder,
-          },
-          { headers }
-        );
-        console.log("List order saved successfully:", response.data);
-        return response.data;
-      } catch (error) {
-        console.error(
-          "Error in mutationFn:",
-          error.response?.data || error.message || error
-        );
-        throw error;
-      }
+      const response = await axios.put(
+        `/api/list`,
+        { boardId, lists: newOrder },
+        { headers }
+      );
+      return response.data;
     },
     onSuccess: () => {
-      console.log("Mutation onSuccess. Invalidating board query...");
-      queryClient.invalidateQueries(["board", boardId]);
-    },
-    onError: (error) => {
-      console.error(
-        "Error saving list order in onError:",
-        error.response?.data || error.message || error
-      );
+      queryClient.invalidateQueries({ queryKey: ["board", boardId] });
     },
   });
 };

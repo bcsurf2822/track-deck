@@ -158,8 +158,6 @@ export async function PUT(req) {
 
     await board.save();
 
-    console.log("List order updated successfully:", board.lists);
-
     return NextResponse.json({
       message: "Lists reordered successfully",
       board,

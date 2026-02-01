@@ -11,39 +11,27 @@ export const useLoginGuest = () => {
   return {
     ...useMutation({
       mutationFn: async () => {
+        setErrorMessage("");
+
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 10000);
+
         try {
-          setErrorMessage("");
-
-          const controller = new AbortController();
-          const timeoutId = setTimeout(() => controller.abort(), 10000);
-
           const { data } = await axios.post(
             "/api/auth/guest",
             {},
-            {
-              signal: controller.signal,
-
-              retry: 2,
-              retryDelay: 1000,
-            }
+            { signal: controller.signal }
           );
-
           clearTimeout(timeoutId);
           return data.guest;
         } catch (error) {
-          clearTimeout?.();
+          clearTimeout(timeoutId);
 
           if (error.name === "AbortError" || error.code === "ECONNABORTED") {
-            console.error("Request timed out:", error);
             throw new Error("Request timed out. Please try again.");
           }
 
           if (error.response) {
-            console.error("Server error response:", {
-              status: error.response.status,
-              data: error.response.data,
-            });
-
             if (error.response.status === 503) {
               throw new Error(
                 "Service temporarily unavailable. Please try again in a moment."
@@ -51,18 +39,15 @@ export const useLoginGuest = () => {
             } else if (error.response.status === 500) {
               throw new Error("Server error. Our team has been notified.");
             }
-
             throw new Error(
               error.response.data?.error ||
                 "Failed to log in as a guest. Please try again."
             );
           } else if (error.request) {
-            console.error("No response received:", error.request);
             throw new Error(
               "No response from server. Please check your connection."
             );
           } else {
-            console.error("Error during request setup:", error.message);
             throw new Error(
               "Failed to connect to the server. Please try again."
             );
@@ -74,8 +59,6 @@ export const useLoginGuest = () => {
         router.push("/dashboard");
       },
       onError: (error) => {
-        console.error("Error during guest login:", error);
-
         setErrorMessage(error.message || "Failed to log in as guest.");
       },
     }),
