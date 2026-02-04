@@ -20,7 +20,7 @@ export default function Footer() {
 
           <div className="flex gap-5 items-center">
             <a
-              href="https://www.linkedin.com/in/benjamin-corbett-84822424a/"
+              href="https://www.linkedin.com/in/corbett-benjamin/"
               target="_blank"
               rel="noopener noreferrer"
               className="transition-transform hover:scale-110"
